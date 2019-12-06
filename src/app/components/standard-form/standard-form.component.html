@@ -1,0 +1,24 @@
+<div class="container">
+
+  <div class="form-header">
+    <h3>{{formHeader}}</h3>
+  </div>
+  <div class="form-content" *ngIf="standardForm">
+    <form [formGroup]="standardForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-field">
+          <input placeholder="Your Email" formControlName="email">
+        </div>
+
+        <div class="form-field">
+          <input placeholder="Your Name" formControlName="name">
+        </div>
+
+        <div class="submit-button">
+          <button type="submit">{{submitLabel}}</button>
+        </div>
+
+
+    </form>
+</div>
+</div>

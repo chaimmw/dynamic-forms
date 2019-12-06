@@ -1,0 +1,31 @@
+<div class="container">
+
+    <div class="form-header">
+      <h3>{{formHeader}}</h3>
+    </div>
+    <div class="form-content" *ngIf="customForm">
+     <form [formGroup]="customForm" (ngSubmit)="onSubmit()">
+
+      <div class="clear-fields">
+        <button (click)="clearFormFields()">Clear Form Fields</button>
+      </div>
+
+
+        <div class="form-field" *ngFor="let field of getFormFields()">
+
+          <input *ngIf="field !== 'description'" placeholder="{{field}}" formControlName="{{field}}">
+          <textarea *ngIf="field === 'description'" placeholder="{{field}}" formControlName="{{field}}"></textarea>
+
+          <div *ngIf="getFormField(field).invalid && getFormField(field).dirty">
+            <span [ngClass]="{'hasError': getFormField(field).invalid && getFormField(field).dirty}">Error</span>
+          </div>
+        </div>
+
+        <div class="submit-button">
+          <button type="submit">{{submitLabel}}</button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>

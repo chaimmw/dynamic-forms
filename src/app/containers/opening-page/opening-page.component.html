@@ -1,0 +1,51 @@
+<div class="app-stuff">
+
+  <div class="form-container">
+    <!-- <app-standard-form></app-standard-form>
+    <app-custom-form
+    [formModel]="typeDescriptionFormModel"
+    [validators]="typeDescriptionFormValidators"
+    [formHeader]="'Awsome Form'"
+    [submitLabel]="'Submit'"
+    (formSubmittedResult)="onFormSubmission($event, typeDescriptionFormModelResult)"></app-custom-form> -->
+  </div>
+
+  <div class="custom-form-form">
+
+    <div class="add-fields">
+      <label for="key">
+        Key
+      </label>
+      <input type="text" [(ngModel)]="newFormKey">
+
+      <label for="key">
+          Default Value
+        </label>
+        <input type="text" [(ngModel)]="newFormValue">
+
+        <button (click)="addFormField()">Add Field To Form</button>
+    </div>
+    <div *ngFor="let field of getCustomFormFormKeyValues()">
+      <span>{{field.key}}</span> : <span>{{field.value}}</span>
+      <button (click)="removeField(field.key)">Remove Field</button>
+    </div>
+    <button (click)="createNewForm()">Add Form</button>
+  </div>
+
+  <div class="form-list">
+    <div class="form-content" *ngFor="let form of customFormList; let i = index;">
+      <div class="form-label">This is Form # {{i + 1}}</div>
+      <app-custom-form
+      [formModel]="form"
+      [formHeader]="'Form ' + (i + 1)"
+      [submitLabel]="'Submit'"
+      (formSubmittedResult)="onFormSubmission($event, typeDescriptionFormModelResult)"></app-custom-form>
+    </div>
+  </div>
+
+  <div class="result-container">
+    <div class="result" *ngFor="let result of typeDescriptionFormModelResult">
+      <span>{{result | json}}</span>
+    </div>
+  </div>
+</div>
